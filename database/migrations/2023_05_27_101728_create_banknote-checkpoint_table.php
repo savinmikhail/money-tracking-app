@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banknote-params', function (Blueprint $table) {
+        Schema::create('banknote-checkpoint', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('banknote_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('banknote_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('location');
             $table->longText('comment');
-            $table->foreignId('image_id')->constrained('images')->onDelete('cascade')->onUpdate('cascade');
+            $table->longText('image_path');
             $table->timestamps();
         });
     }
