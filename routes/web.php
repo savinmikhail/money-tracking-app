@@ -1,20 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\CustomAuthController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-//Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
-//Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-//Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-//Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-//Route::post('registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
-//Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,36 +14,24 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
-Route::get('/user', function () {
-    dump(\App\Models\User::find(1));
-});
-
-Route::get('/banknote', function () {
-    dump(\App\Models\Banknote::find(1));
-});
-
-Route::get('/', [\App\Http\Controllers\Banknote::class, 'list']);
-
-Route::get('/create', [\App\Http\Controllers\Banknote::class, 'create']);
-Route::post('/create', [\App\Http\Controllers\Banknote::class, 'store']);
-
-Route::get('/banknote/{banknote}', [\App\Http\Controllers\Banknote::class, 'edit']);
-Route::post('/banknote/{banknote}', [\App\Http\Controllers\Banknote::class, 'update']);
-
-Route::delete('/banknote/{banknote}', [\App\Http\Controllers\Banknote::class, 'destroy']);
+Route::get('/', function () {return view('welcome');});
+Route::get('/banknote', function () {return view('banknote');});
+Route::post('/banknote', function () {return view('banknote');});
 
 
+Route::post('/signup', [\App\Http\Controllers\UserController::class, 'signup'])->name('signUp');
+Route::get('/signup', [\App\Http\Controllers\UserController::class, 'show'])->name('showSignUp');
+Route::get('/home', [\App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 
-
-        //    $user = \App\Models\User::create([
-//        'name' => 'user',
-//        'email' => 'user@',
-//        'password' => \Illuminate\Support\Facades\Hash::make('user')
-//    ]);
-//    return $user;
-
-
-
-//Route::get('/about-laravel', [AboutUsController::class, 'show']);
-
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
+//
+//Route::middleware('auth')->group(function () {
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//});
+//
+//require __DIR__.'/auth.php';

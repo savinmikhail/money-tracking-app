@@ -10,6 +10,7 @@ class Banknote extends Controller
  {
      $banknotes = Banknote::orderByDesc('created_at')
          ->get();
+//     $banknotes = Banknote::get();
 
     return view('list', [
         'banknotes' => $banknotes

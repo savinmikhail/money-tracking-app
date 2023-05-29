@@ -49,17 +49,18 @@
 <h1 class="text-3xl font-bold mb-10">Banknotes</h1>
 
 <ul>
-    <li class="flex items-center mb-5">
-        <span class="w-1/5">User:</span>
-        <p class="w-2/5">Some content.</p>
-        <div class="w-1/5 flex">
-            <a href="" class="rounded-mb bg-indigo-500 text-white p-2">Update</a>
-            <form action="/" method="DELETE" class="p-2 ml-2 rounded-md bg-red-500 text-white">
-                <button type="submit">Delete</button>
-            </form>
-        </div>
-    </li>
-
+    @foreach($banknotes as $banknote)
+        <li class="flex items-center mb-5">
+            <span class="w-1/5">User:</span>
+            <p class="w-2/5">Some content.</p>
+            <div class="w-1/5 flex">
+                <a href="" class="rounded-mb bg-indigo-500 text-white p-2">Update</a>
+                <form action="/" method="DELETE" class="p-2 ml-2 rounded-md bg-red-500 text-white">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </li>
+    @endforeach
 </ul>
 </body>
 </html>
