@@ -14,15 +14,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-Route::get('/banknote', function () {return view('banknote');});
-Route::post('/banknote', function () {return view('banknote');});
 
 
 Route::post('/signup', [\App\Http\Controllers\UserController::class, 'signup'])->name('signUp');
 Route::get('/signup', [\App\Http\Controllers\UserController::class, 'show'])->name('showSignUp');
-Route::get('/home', [\App\Http\Controllers\UserController::class, 'home'])->name('home');
 
+Route::get('/signin', [\App\Http\Controllers\SignInController::class, 'show'])->name('showSignIn');
+Route::post('/signin', [\App\Http\Controllers\SignInController::class, 'authenticate'])->name('signIn');
+
+Route::get('/', function () {return view('welcome');});
+
+
+Route::middleware('auth')->group(function (){
+
+    Route::get('/home', [\App\Http\Controllers\UserController::class, 'home'])->name('home');
+    Route::get('/checkpoints', function () {return view('checkpoints');});
+
+    Route::get('/dashboard', function () {return view('dashboard');});
+
+    Route::get('/banknote', function () {return view('banknote');});
+    Route::post('/banknote', function () {return view('banknote');});
+
+});
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

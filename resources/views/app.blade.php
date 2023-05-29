@@ -79,29 +79,29 @@
 {{--</body>--}}
 {{--</html>--}}
 
-<!--<body>-->
-<div class="login">
-    <h1>Sign in</h1>
-    <?php if(isset($validationErrors['Auth'])){
-        echo $validationErrors['Auth'];
-    }; ?>
-    <form action="" method="POST">
-        <label>
-            <?php if (isset($validationErrors['Login'])) {
-                echo $validationErrors['Login'];
-            }?>
-            <input type="text" name="Username" placeholder="Username" required />
-        </label>
-        <label>
-            <?php if (isset($validationErrors['Password'])) {
-                echo $validationErrors['Password'];
-            }?>
-            <input type="password" name="Password" placeholder="Password" required />
-        </label>
-        <button type="submit" class="btn btn-primary btn-block btn-large">Sign In</button>
-        <button onclick="location.href='http://localhost:81/signup'" class="btn btn-primary btn-block btn-large" type="button">Sign Up</button>
-    </form>
-</div>
-<link rel="stylesheet" href="../css/entrance.css">
+{{--<!--<body>-->--}}
+{{--<div class="login">--}}
+{{--    <h1>Sign in</h1>--}}
+{{--    <?php if(isset($validationErrors['Auth'])){--}}
+{{--        echo $validationErrors['Auth'];--}}
+{{--    }; ?>--}}
+{{--    <form action="" method="POST">--}}
+{{--        <label>--}}
+{{--            <?php if (isset($validationErrors['Login'])) {--}}
+{{--                echo $validationErrors['Login'];--}}
+{{--            }?>--}}
+{{--            <input type="text" name="Username" placeholder="Username" required />--}}
+{{--        </label>--}}
+{{--        <label>--}}
+{{--            <?php if (isset($validationErrors['Password'])) {--}}
+{{--                echo $validationErrors['Password'];--}}
+{{--            }?>--}}
+{{--            <input type="password" name="Password" placeholder="Password" required />--}}
+{{--        </label>--}}
+{{--        <button type="submit" class="btn btn-primary btn-block btn-large">Sign In</button>--}}
+{{--        <button onclick="location.href='http://localhost:81/signup'" class="btn btn-primary btn-block btn-large" type="button">Sign Up</button>--}}
+{{--    </form>--}}
+{{--</div>--}}
+{{--<link rel="stylesheet" href="../css/entrance.css">--}}
 
-<!--</body>-->
+{{--<!--</body>-->--}}

@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
              'password'  => 'user'
          ]);
         \App\Models\User::create([
-            'name' => 'cus',
-            'email' => 'cus@',
-            'password'  => 'cus'
+            'name' => 'qwer',
+            'email' => 'qwer@r',
+            'password'  => 'qwer'
         ]);
         \App\Models\Banknote::create([
             'serial_number' => '12345',
