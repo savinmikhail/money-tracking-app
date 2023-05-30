@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BanknoteController;
+use App\Http\Controllers\BanknoteCheckpointController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,35 +18,27 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/signup', [\App\Http\Controllers\UserController::class, 'signup'])->name('signUp');
-Route::get('/signup', [\App\Http\Controllers\UserController::class, 'show'])->name('showSignUp');
+Route::post('/signup', [UserController::class, 'signup'])->name('signUp');
+Route::get('/signup', [UserController::class, 'showSignUp'])->name('showSignUp');
 
-Route::get('/signin', [\App\Http\Controllers\SignInController::class, 'show'])->name('showSignIn');
-Route::post('/signin', [\App\Http\Controllers\SignInController::class, 'authenticate'])->name('signIn');
+Route::get('/signin', [UserController::class, 'showSignIn'])->name('showSignIn');
+Route::post('/signin', [UserController::class, 'authenticate'])->name('signIn');
 
 Route::get('/', function () {return view('welcome');});
 
 
 Route::middleware('auth')->group(function (){
 
-    Route::get('/home', [\App\Http\Controllers\UserController::class, 'home'])->name('home');
-    Route::get('/checkpoints', function () {return view('checkpoints');});
+    Route::get('/home', [UserController::class, 'home'])->name('home');
+
+    Route::get('/checkpoint', [BanknoteController::class, 'list'])->name('checkpointList');
+
+    Route::post('/checkpoint', [BanknoteCheckpointController::class, 'store'])->name('checkpointsStore');
 
     Route::get('/dashboard', function () {return view('dashboard');});
 
-    Route::get('/banknote', function () {return view('banknote');});
+    Route::get('/banknote', function () {return view('banknote');})->name('banknote');
     Route::post('/banknote', function () {return view('banknote');});
 
 });
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
-//
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
-//
-//require __DIR__.'/auth.php';

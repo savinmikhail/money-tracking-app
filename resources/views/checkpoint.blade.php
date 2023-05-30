@@ -40,7 +40,7 @@
     <tr>
         <td>Москва</td>
         <td>Купил сыр! Вкусный сыр!</td>
-        <td><img src="../images/photo1.png" alt="Photo 1"></td>
+        <td><img src="../../public/images/photo1.png" alt="Photo 1"></td>
         <td>2023-01-10</td>
     </tr>
     <tr>
@@ -52,22 +52,45 @@
     <tr>
         <td>Екатеринбург</td>
         <td>Расплатился этой купюрой в кафе. Все ок!</td>
-        <td><img src="{{ asset('/resources/images/photo1.png') }}" alt="Photo 3"></td>
+        <td><img src="{{ asset('/public/images/photo1.png') }}" alt="Photo 3"></td>
         <td>2023-05-05</td>
     </tr>
     <tr>
         <td>Нижний Новгород</td>
         <td>Снял деньги в банкомате. Удачный день!</td>
-        <td><img src="{{ asset('images/img1.png') }}" alt="Photo 4"></td>
+        <td><img src="{{ asset('images/photo1.png') }}" alt="Photo 4"></td>
         <td>2023-07-18</td>
     </tr>
     <tr>
         <td>Казань</td>
         <td>Покупал подарки в магазине. Банкнота пришлась кстати!</td>
-        <td><img src="https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fretailworldmagazine.com.au%2Fwp-content%2Fuploads%2F2020%2F10%2Fshutterstock_280286561-scaled.jpg&lr=102694&p=1&pos=6&rpt=simage&text=shopping%20with%20banknote" alt="Photo 5"></td>
+        <td><img src="{{ asset('storage/images/VWAhrzk2qOApn99oLTMrcCLHasIeQyZHFq2Awu06.png') }}" alt="Photo 5"></td>
         <td>2023-09-30</td>
     </tr>
+    @foreach($checkpoints as $key => $data)
+    <tr>
+        <td>{{ $data->location}}</td>
+        <td>{{ $data->comment}}</td>
+        <td><img src="{{ asset($data->image_path) }}" alt="Photo 5"></td>
+        <td>{{ $data->created_at}}</td>
+    </tr>
+    @endforeach
     </tbody>
 </table>
+<form method="POST" action="{{route('checkpointsStore')}}" enctype="multipart/form-data">
+    @csrf
+    <label for="banknote_id">Banknote id:</label>
+    <input type="text" id="banknote_id" name="banknote_id"><br><br>
+    <label for="location">Location:</label>
+         <input type="text" id="location" name="location"><br><br>
+    <label for="comment">Comment:</label>
+         <input type="text" id="comment" name="comment"><br><br>
+    <label for="date">Date:</label>
+         <input type="date" id="date" name="date"><br><br>
+    <label for="photo">Upload Photo:</label>
+        <input type="file" id="image" name="image"><br><br>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
+

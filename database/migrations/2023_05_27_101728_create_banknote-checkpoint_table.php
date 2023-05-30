@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banknote-checkpoint', function (Blueprint $table) {
+        Schema::create('banknote_checkpoints', function (Blueprint $table) {
             $table->id();
             $table->foreignId('banknote_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
