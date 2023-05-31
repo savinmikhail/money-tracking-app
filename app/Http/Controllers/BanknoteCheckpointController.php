@@ -4,19 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckpointRequest;
 use App\Http\Requests\StoreBanknoteRequest;
+use App\Models\Banknote;
 use App\Models\BanknoteCheckpoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BanknoteCheckpointController extends Controller
 {
+    public function list()
+    {
+        $checkpoints = DB::table('banknote_checkpoints')->get();
+        return view('checkpoint', ['checkpoints' => $checkpoints]);
+    }
+    public function index($id)
+    {
+//         return Banknote::find($id)->getCheckpoint;
+        $banknote_id = $id;
+        $checkpoints = Banknote::find($id)->getCheckpoint;
+        return view('checkpoint', ['checkpoints' => $checkpoints, 'banknote_id' => $banknote_id]);
+    }
     public function update(Request $request): string
     {
-        $path = $request->file('avatar')->store('avatars');
-
-        return $path;
+//        $path = $request->file('avatar')->store('avatars');
+//
+//        return $path;
     }
 
-    public function store(CheckpointRequest $request)
+    public function store(CheckpointRequest $request, $id)
     {
 
         if ($request->hasFile('image')) {
@@ -29,10 +43,10 @@ class BanknoteCheckpointController extends Controller
                 'comment' => $request->comment,
                 'image_path' => $imagePath,
                 //must be removed
-                'banknote_id' => $request->banknote_id,
+                'banknote_id' => $id,
             ]);
-
-            return redirect(route('checkpointList'));
+            $pathForRedicrect = '/checkpoint/' . $id;
+            return redirect($pathForRedicrect);
 //        return redirect()->route('home');
         }
     }

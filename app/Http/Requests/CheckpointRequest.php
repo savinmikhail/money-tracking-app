@@ -25,7 +25,7 @@ class CheckpointRequest extends FormRequest
             'location' => ['required', 'string'],
             'comment' => ['required', 'string', 'min:3'],
             'image' => ['required', 'file', 'max:2048'],
-            'banknote_id' => ['required'],
+//            'banknote_id' => ['required'],
         ];
     }
 }

@@ -77,10 +77,15 @@
     @endforeach
     </tbody>
 </table>
-<form method="POST" action="{{route('checkpointsStore')}}" enctype="multipart/form-data">
+{{--<form method="POST" action="{{route('checkpointsStore')}}" enctype="multipart/form-data">--}}
+{{--    <form method="POST" action="/checkpoint/{{route('getBanknoteId')}}" enctype="multipart/form-data">--}}
+{{--        <form method="POST" action="/checkpoint/2" enctype="multipart/form-data">--}}
+{{--@foreach($banknote_id as $id)--}}
+<form method="POST" action="/checkpoint/{{ $banknote_id }}" enctype="multipart/form-data">
+{{--    @endforeach--}}
     @csrf
-    <label for="banknote_id">Banknote id:</label>
-    <input type="text" id="banknote_id" name="banknote_id"><br><br>
+{{--    <label for="banknote_id">Banknote id:</label>--}}
+{{--    <input type="text" id="banknote_id" name="banknote_id"><br><br>--}}
     <label for="location">Location:</label>
          <input type="text" id="location" name="location"><br><br>
     <label for="comment">Comment:</label>
