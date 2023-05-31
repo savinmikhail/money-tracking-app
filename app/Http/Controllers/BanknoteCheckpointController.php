@@ -23,12 +23,12 @@ class BanknoteCheckpointController extends Controller
         $checkpoints = Banknote::find($id)->getCheckpoint;
         return view('checkpoint', ['checkpoints' => $checkpoints, 'banknote_id' => $banknote_id]);
     }
-    public function update(Request $request): string
-    {
-//        $path = $request->file('avatar')->store('avatars');
-//
-//        return $path;
-    }
+//    public function update(Request $request): string
+//    {
+////        $path = $request->file('avatar')->store('avatars');
+////
+////        return $path;
+//    }
 
     public function store(CheckpointRequest $request, $id)
     {
