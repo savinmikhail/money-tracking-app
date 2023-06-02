@@ -11,7 +11,8 @@ class BanknoteCheckpoint extends Model
 
 //    protected $table = 'banknote_checkpoint';
     protected $fillable = [
-        'location',
+        'latitude',
+        'longitude',
         'comment',
         'image_path',
         'banknote_id',

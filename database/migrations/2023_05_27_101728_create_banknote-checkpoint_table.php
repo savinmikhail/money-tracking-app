@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('banknote_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('location');
+            $table->string('longitude');
+            $table->string('latitude');
+
             $table->longText('comment');
             $table->longText('image_path');
             $table->timestamps();

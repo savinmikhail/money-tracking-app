@@ -32,6 +32,7 @@ class BanknoteCheckpointController extends Controller
 
     public function store(CheckpointRequest $request, $id)
     {
+//        echo  'test'; die();
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
@@ -39,10 +40,12 @@ class BanknoteCheckpointController extends Controller
 
 
             $checkpoint = BanknoteCheckpoint::create([
-                'location' => $request->location,
+                'longitude' => $request->lng,
+                'latitude' => $request->ltd,
+
                 'comment' => $request->comment,
                 'image_path' => $imagePath,
-                //must be removed
+
                 'banknote_id' => $id,
             ]);
             $pathForRedicrect = '/checkpoint/' . $id;

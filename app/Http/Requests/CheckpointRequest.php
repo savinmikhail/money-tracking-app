@@ -22,10 +22,11 @@ class CheckpointRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'location' => ['required', 'string'],
+            'ltd' => ['required', 'string'],
+            'lng' => ['required', 'string'],
             'comment' => ['required', 'string', 'min:3'],
             'image' => ['required', 'file', 'max:2048'],
-//            'banknote_id' => ['required'],
+
         ];
     }
 }

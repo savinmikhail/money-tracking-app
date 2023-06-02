@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banknote-lists', function (Blueprint $table) {
+        Schema::create('banknote_user', function (Blueprint $table) {
             $table->id();
 //            $table->string('banknote_id')->unique();
             $table->foreignId('banknote_id')->constrained('banknotes')->onDelete('cascade')->onUpdate('cascade');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banknote-lists');
+        Schema::dropIfExists('banknote_user');
     }
 };

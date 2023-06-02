@@ -44,6 +44,12 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/checkpoint/{id}', [BanknoteCheckpointController::class, 'index']);
 
+    Route::get('/map', function () {return view('map');});
+    Route::get('/geo', function () {return view('geo');});
+    Route::get('/feedback', function () {return view('feedback');});
+
+    Route::get('/mail', function () { return response()->json('data');})->name('ajax');
+
 
 //    Route::get('/checkpoint/{id}', function ($id) {return 'checkpoint'.$id;})->name('getBanknoteId');//определит, какая страница нужна
 
