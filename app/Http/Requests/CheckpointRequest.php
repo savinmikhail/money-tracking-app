@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CheckpointRequest extends FormRequest
 {
@@ -26,7 +28,24 @@ class CheckpointRequest extends FormRequest
             'lng' => ['required', 'string'],
             'comment' => ['required', 'string', 'min:3'],
             'image' => ['required', 'file', 'max:2048'],
+            'date' => ['required', 'date'],
+        ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
+    }
 
+    public function messages()
+    {
+        return [
+            'longitude' => 'Longitude is required',
+            'latitude' => 'Latitude is required',
+            'comment' => 'Comment is required, min 5 symbols'
         ];
     }
 }

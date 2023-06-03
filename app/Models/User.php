@@ -23,7 +23,10 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    public function banknotes()
+    {
+        return $this->belongsToMany(Banknote::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -15,29 +15,5 @@ class DatabaseSeeder extends Seeder
     {
 
 
-         \App\Models\User::create([
-             'name' => 'user',
-             'email' => 'user@u',
-             'password'  => 'user'
-         ]);
-        \App\Models\User::create([
-            'name' => 'qwer',
-            'email' => 'qwer@r',
-            'password'  => 'qwer'
-        ]);
-        \App\Models\Banknote::create([
-            'serial_number' => '12345',
-            'price' => '1000',
-        ]);
-        \App\Models\Banknote::create([
-            'serial_number' => '54321',
-            'price' => '2000',
-          ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

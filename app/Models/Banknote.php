@@ -12,8 +12,13 @@ class Banknote extends Model
         'serial_number',
         'price',
     ];
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
     public function getCheckpoint()
     {
         return $this->hasMany(BanknoteCheckpoint::class);
     }
+
 }

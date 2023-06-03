@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->string('longitude');
             $table->string('latitude');
-
+            $table->date('date');
             $table->longText('comment');
             $table->longText('image_path');
             $table->timestamps();

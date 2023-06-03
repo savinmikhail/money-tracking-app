@@ -16,5 +16,6 @@ class BanknoteCheckpoint extends Model
         'comment',
         'image_path',
         'banknote_id',
+        'date',
     ];
 }

@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+
+@section('content')
 <head>
     <title>Simple and Beautiful Table</title>
     <style>
@@ -13,18 +14,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             table-layout: fixed; /* Add this line for fixed table layout */
         }
-        .container {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            width: 300px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+
 
         th, td {
             padding: 8px;
@@ -38,64 +28,10 @@
             background-color: #ffffff;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        header {
-            background-color: #333;
-            padding: 10px;
-            color: #fff;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        header a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-
-        header a:hover {
-            text-decoration: underline;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
     </style>
 </head>
 <body>
-<header>
-    <a href="#">My Cart</a>
-    <a href="#">My Profile</a>
-    <!-- Add more navigation links as needed -->
-</header>
+
 
 <h1>My banknotes</h1>
 <table>
@@ -132,4 +68,5 @@
     </form>
 </div>
 </body>
-</html>
+
+@endsection
