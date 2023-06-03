@@ -66,7 +66,7 @@
                 @foreach($checkpoints as $data)
             {
                 coords: { lat: {{ $data->latitude }}, lng: {{ $data->longitude }} },
-                content: '<p>{{ $data->comment }}</p>'
+                content: '<div><p>Comment: {{ $data->comment }}</p><p>Date: {{ $data->date }}</p><img src="{{ asset($data->image_path) }}" alt="Image"></div>'
             },
             @endforeach
         ];
@@ -87,6 +87,7 @@
             if (props.content) {
                 var infoWindow = new google.maps.InfoWindow({
                     content: props.content,
+                    maxWidth: 300,
                 });
 
                 marker.addListener('click', function () {
@@ -98,13 +99,41 @@
                 var lat = this.getPosition().lat();
                 var lng = this.getPosition().lng();
 
-
                 ltdInput.value = lat;
                 lngInput.value = lng;
             });
         }
+
+        // Draw route through markers
+        var waypoints = markers.map(function (marker) {
+            return {
+                location: marker.coords,
+                stopover: true,
+            };
+        });
+
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            map: map,
+            suppressMarkers: true, // Hide the default markers
+        });
+
+        var request = {
+            origin: markers[0].coords,
+            destination: markers[markers.length - 1].coords,
+            waypoints: waypoints.slice(1, waypoints.length - 1), // Exclude the first and last markers as origin and destination
+            optimizeWaypoints: true,
+            travelMode: 'DRIVING',
+        };
+
+        directionsService.route(request, function (result, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(result);
+            }
+        });
     }
 </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwgkwTxgXlzvyCrgCVJ6Z-785Ocan9PiM
 &callback=initMap"> </script>
 

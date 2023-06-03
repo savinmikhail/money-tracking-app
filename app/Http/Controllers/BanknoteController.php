@@ -49,7 +49,7 @@ class BanknoteController extends Controller
             //            $errorMessage = $e->getMessage();
             // Handle the exception or display an error message
             return back()->withError('An error occurred. Please try again.');
-//            return back()->withError($errorMessage);
+            //return back()->withError($errorMessage);
         }
     }
 
