@@ -1,4 +1,4 @@
-<h1 >Money-tracking</h1>
+<h1 align="center">Money-tracking</h1>
   <p> A Laravel project for tracking money with checkpoints on a map.
  <h2>Description:</h2>
   <p>The project allows users to track banknotes by associating them with checkpoints. Each checkpoint represents a location on the map and includes the date, comment, and optional photo.</p>
@@ -14,7 +14,7 @@
 
 <h2> Installation </h2>
 <ul>
-
+    
 - Clone the repository: git clone https://github.com/your-username/your-repo.git.<br>
 - Install dependencies: composer install.<br>
 - Copy the .env.example file to .env.<br>
@@ -38,11 +38,11 @@
 
 4. Create tables in the database:
 
-```make migrate```
+```make migrate``` 
 
 <h2>Usage </h2>
 <ul>
-
+    
 - Sign up or sign in to access the application.<br>
 - Add banknotes by entering the serial number and price.<br>
 - Create checkpoints by providing the location, date, comment, and optional photo.<br>
