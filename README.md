@@ -13,11 +13,14 @@
 </ul>
 
 <h2> Installation </h2>
-- Clone the repository: git clone https://github.com/your-username/your-repo.git
-- Install dependencies: composer install
-- Copy the .env.example file to .env
-- Generate the application key: php artisan key:generate
-- Configure the database connection in the .env file.
+<ul>
+    
+- Clone the repository: git clone https://github.com/your-username/your-repo.git.<br>
+- Install dependencies: composer install.<br>
+- Copy the .env.example file to .env.<br>
+- Generate the application key: php artisan key:generate.<br>
+- Configure the database connection in the .env file.<br>
+</ul>
 
 <h2> Start steps</h2>
 
@@ -38,10 +41,12 @@
 ```make migrate``` 
 
 <h2>Usage </h2>
-- Sign up or sign in to access the application.
-- Add banknotes by entering the serial number and price.
-- Create checkpoints by providing the location, date, comment, and optional photo.
-- View checkpoints on the map.
-- Click on a marker to view the checkpoint details.
-- The routes connecting the checkpoints will be automatically generated.
-
+<ul>
+    
+- Sign up or sign in to access the application.<br>
+- Add banknotes by entering the serial number and price.<br>
+- Create checkpoints by providing the location, date, comment, and optional photo.<br>
+- View checkpoints on the map.<br>
+- Click on a marker to view the checkpoint details.<br>
+- The routes connecting the checkpoints will be automatically generated.<br>
+</ul>
