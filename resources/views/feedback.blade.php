@@ -14,9 +14,16 @@
             <form id="mailForm">
                 @csrf
 
+                <label for="email"></label>
                 <input type="email" id="email" name="email" placeholder="email" class="form-control"><br>
+
+                <label for="name"></label>
                 <input type="text" id="name" name="name" placeholder="name" class="form-control"><br>
+
+                <label for="phone"></label>
                 <input type="phone" id="phone" name="phone" placeholder="phone" class="form-control"><br>
+
+                <label for="message"></label>
                 <textarea name="message" id="message" placeholder="message" class="form-control"></textarea><br>
                 <button type="button" id="sendMail" class="btn btn-success">Send</button>
             </form>

@@ -10,39 +10,36 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             padding: 20px;
             width: 300px;
-            margin: 0 10px; /* Adjust the margin as needed */
-            margin-top: 10px;
-            margin-bottom: 20px;
+            /* Adjust the margin as needed */
+            margin: 10px 10px 20px;
         }
     </style>
 </head>
 <body>
 <h1>Checkpoints of banknote {{ $serial_number }}</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Location</th>
-        <th>Comment</th>
-        <th>Photo</th>
-        <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
+{{--<table>--}}
+{{--    <thead>--}}
+{{--    <tr>--}}
+{{--        <th>Location</th>--}}
+{{--        <th>Comment</th>--}}
+{{--        <th>Photo</th>--}}
+{{--        <th>Date</th>--}}
+{{--    </tr>--}}
+{{--    </thead>--}}
+{{--    <tbody>--}}
 
-    @foreach($checkpoints as $key => $data)
-    <tr>
-        <td>{{ $data->longitude}}</td>
-        <td>{{ $data->comment}}</td>
-        <td><img src="{{ asset($data->image_path) }}" alt="Photo 5"></td>
-        <td>{{ $data->date}}</td>
-    </tr>
-    @endforeach
-    </tbody>
-</table>
+{{--    @foreach($checkpoints as $key => $data)--}}
+{{--    <tr>--}}
+{{--        <td>{{ $data->longitude}}</td>--}}
+{{--        <td>{{ $data->comment}}</td>--}}
+{{--        <td><img src="{{ asset($data->image_path) }}" alt="Photo 5"></td>--}}
+{{--        <td>{{ $data->date}}</td>--}}
+{{--    </tr>--}}
+{{--    @endforeach--}}
+{{--    </tbody>--}}
+{{--</table>--}}
 
-
-
-<h1>Map</h1>
+{{--<h2>Map</h2>--}}
 <div id="map" class="map"></div>
 <script>
     function initMap() {
@@ -134,8 +131,7 @@
     }
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwgkwTxgXlzvyCrgCVJ6Z-785Ocan9PiM
-&callback=initMap"> </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwgkwTxgXlzvyCrgCVJ6Z-785Ocan9PiM&callback=initMap"> </script>
 
 </body>
 
@@ -153,7 +149,7 @@
             <label for="ltd">Latitude:</label>
             <input type="text" id="ltd" name="ltd"><br><br>
 
-            <button class="getCoords">Result</button>
+            <button class="getCoords">Get location</button>
         </div>
             <script>
                 // Get references to the input elements
@@ -171,7 +167,7 @@
                 };
 
                 // Function to retrieve the geolocation
-                const findMyState = (event) => {
+                const getCoords = (event) => {
                     event.preventDefault(); // Prevent form submission and page reload
 
                     const status = document.querySelector('.status');
@@ -186,7 +182,7 @@
                 };
 
                 // Attach the click event listener to the "Result" button
-                document.querySelector('.getCoords').addEventListener('click', findMyState);
+                document.querySelector('.getCoords').addEventListener('click', getCoords);
             </script>
 {{--        @push('findGeo')--}}
 {{--                 <script src="{{ asset('js/findGeo.js')}}"></script>--}}
