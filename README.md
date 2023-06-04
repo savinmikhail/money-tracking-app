@@ -13,11 +13,11 @@
 </ul>
 
 <h2> Installation </h2>
-Clone the repository: git clone https://github.com/your-username/your-repo.git
-Install dependencies: composer install
-Copy the .env.example file to .env
-Generate the application key: php artisan key:generate
-Configure the database connection in the .env file.
+- Clone the repository: git clone https://github.com/your-username/your-repo.git
+- Install dependencies: composer install
+- Copy the .env.example file to .env
+- Generate the application key: php artisan key:generate
+- Configure the database connection in the .env file.
 
 <h2> Start steps</h2>
 
