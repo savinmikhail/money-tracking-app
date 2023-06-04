@@ -2,7 +2,6 @@
 
 @section('content')
 <head>
-    <title>This Particular Banknote's Checkpoints</title>
     <style>
         .container {
             background-color: #fff;
@@ -17,29 +16,7 @@
 </head>
 <body>
 <h1>Checkpoints of banknote {{ $serial_number }}</h1>
-{{--<table>--}}
-{{--    <thead>--}}
-{{--    <tr>--}}
-{{--        <th>Location</th>--}}
-{{--        <th>Comment</th>--}}
-{{--        <th>Photo</th>--}}
-{{--        <th>Date</th>--}}
-{{--    </tr>--}}
-{{--    </thead>--}}
-{{--    <tbody>--}}
 
-{{--    @foreach($checkpoints as $key => $data)--}}
-{{--    <tr>--}}
-{{--        <td>{{ $data->longitude}}</td>--}}
-{{--        <td>{{ $data->comment}}</td>--}}
-{{--        <td><img src="{{ asset($data->image_path) }}" alt="Photo 5"></td>--}}
-{{--        <td>{{ $data->date}}</td>--}}
-{{--    </tr>--}}
-{{--    @endforeach--}}
-{{--    </tbody>--}}
-{{--</table>--}}
-
-{{--<h2>Map</h2>--}}
 <div id="map" class="map"></div>
 <script>
     function initMap() {
@@ -132,6 +109,8 @@
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwgkwTxgXlzvyCrgCVJ6Z-785Ocan9PiM&callback=initMap"> </script>
+{{--use the next line with your actual api key--}}
+{{--<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>--}}
 
 </body>
 
@@ -143,12 +122,15 @@
         <div class="container">
             <h1 class="status"></h1>
 
+            <!-- Longitude input -->
             <label for="lng">Longitude:</label>
             <input type="text" id="lng" name="lng"><br><br>
 
+            <!-- Latitude input -->
             <label for="ltd">Latitude:</label>
             <input type="text" id="ltd" name="ltd"><br><br>
 
+            <!-- Button to get current location -->
             <button class="getCoords">Get location</button>
         </div>
             <script>
@@ -187,14 +169,22 @@
 {{--        @push('findGeo')--}}
 {{--                 <script src="{{ asset('js/findGeo.js')}}"></script>--}}
 {{--        @endpush--}}
+
         <div class="container">
-        <label for="comment">Comment:</label>
-             <input type="text" id="comment" name="comment"><br><br>
-        <label for="date">Date:</label>
-             <input type="date" id="date" name="date"><br><br>
-        <label for="photo">Upload Photo:</label>
+            <!-- Comment input -->
+            <label for="comment">Comment:</label>
+            <input type="text" id="comment" name="comment"><br><br>
+
+            <!-- Date input -->
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date"><br><br>
+
+            <!-- Photo upload -->
+            <label for="photo">Upload Photo:</label>
             <input type="file" id="image" name="image"><br><br>
-        <button type="submit">Submit</button>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
         </div>
     </div>
 </form>

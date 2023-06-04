@@ -91,9 +91,20 @@
         button:hover {
             background-color: #45a049;
         }
+        /*here was the table for checkpoints*/
 
+        /*table {*/
+        /*    width: 70%;*/
+        /*    border-collapse: collapse;*/
+        /*    margin: 20px auto;*/
+        /*    background-color: #fff;*/
+        /*    border-radius: 5px;*/
+        /*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
+        /*    table-layout: fixed; !* Add this line for fixed table layout *!*/
+        /*}*/
+/*here  table for banknotes*/
         table {
-            width: 70%;
+            width: 500px;
             border-collapse: collapse;
             margin: 20px auto;
             background-color: #fff;
@@ -101,7 +112,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             table-layout: fixed; /* Add this line for fixed table layout */
         }
-
         th, td {
             padding: 8px;
             text-align: center;
@@ -156,7 +166,7 @@
     <!-- The main content of each page will be inserted here -->
     @yield('content')
 </main>
-{{--@stack('scripts')--}}
-<!-- Add your JavaScript and other scripts here -->
 
+<!-- Add your JavaScript and other scripts here -->
+{{--@stack('scripts')--}}
 
