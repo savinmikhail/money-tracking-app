@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Mail\User\PasswordMail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-
 
 class UserController extends Controller
 {
@@ -27,6 +29,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        event(new Registered($user));
+        $name = $request->name;
+        Mail::to($request->email)->send(new PasswordMail($name));
         // Log in the newly created user
         Auth::login($user);
         // Redirect the user to the home page

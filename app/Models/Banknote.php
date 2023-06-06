@@ -18,7 +18,7 @@ class Banknote extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function getCheckpoint()
+    public function checkpoints()
     {
         return $this->hasMany(BanknoteCheckpoint::class);
     }

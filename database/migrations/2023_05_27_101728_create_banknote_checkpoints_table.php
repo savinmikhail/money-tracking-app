@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('banknote_checkpoints', function (Blueprint $table) {
             $table->id();
             $table->foreignId('banknote_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-
             $table->string('longitude');
             $table->string('latitude');
             $table->date('date');

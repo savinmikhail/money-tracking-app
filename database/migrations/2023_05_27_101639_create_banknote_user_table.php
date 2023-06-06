@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('banknote_user', function (Blueprint $table) {
             $table->id();
-//            $table->string('banknote_id')->unique();
             $table->foreignId('banknote_id')->constrained('banknotes')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

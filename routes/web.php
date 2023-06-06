@@ -3,6 +3,8 @@
 use App\Http\Controllers\BanknoteController;
 use App\Http\Controllers\BanknoteCheckpointController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Route:get('/', function () {redirect('/signin');});
+Route::get('/', function () {return view('signin');});
 
 Route::get('/signup', [UserController::class, 'showSignUp'])->name('showSignUp');
 Route::post('/signup', [UserController::class, 'signup'])->name('signUp');
@@ -22,7 +26,7 @@ Route::post('/signup', [UserController::class, 'signup'])->name('signUp');
 Route::get('/signin', [UserController::class, 'showSignIn'])->name('showSignIn');
 Route::post('/signin', [UserController::class, 'authenticate'])->name('signIn');
 
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth','verified'])->group(function (){
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -34,5 +38,11 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/feedback', function () {return view('feedback');});
 
-});
 
+});
+Route::get('/email/verify', function () {return view('auth.verify_email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {$request->fulfill();
+    return redirect('/home');})->middleware(['auth', 'signed'])->name('verification.verify');
+//Auth::routes(['verify' => true]);
