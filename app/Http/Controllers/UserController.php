@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Jobs\SendEmailJob;
 use App\Mail\User\PasswordMail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -29,9 +30,10 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        event(new Registered($user));
-        $name = $request->name;
-        Mail::to($request->email)->send(new PasswordMail($name));
+
+        SendEmailJob::dispatch($user)->onQueue('default');
+//        $user->sendEmailVerificationNotification();
+
         // Log in the newly created user
         Auth::login($user);
         // Redirect the user to the home page
@@ -82,4 +84,8 @@ class UserController extends Controller
         // Redirect the user to the sign-in page
         return redirect('/signin');
     }
+//    public function sendText()
+//    {
+//        SendEmailJob::dispatch()->onQueue('default');
+//    }
 }

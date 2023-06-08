@@ -39,6 +39,8 @@
 4. Create tables in the database:
 
 ```make migrate``` 
+5. After registration run: docker compose exec php-fpm php artisan queue:work
+
 
 <h2>Usage </h2>
 <ul>

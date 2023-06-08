@@ -12,6 +12,7 @@ services:
         depends_on:
             - php-fpm
             - db
+
     php-fpm:
         build: .docker
         restart: always
@@ -29,3 +30,20 @@ services:
             - POSTGRES_PASSWORD=${DB_PASSWORD}
         ports:
             - 54322:5432
+
+
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: 'rabbitmq'
+        hostname: rabbitmq
+        restart: always
+        volumes:
+            - ./rabbitmq:/var/lib/rabbitmq
+        environment:
+            RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+            RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+            RABBITMQ_QUEUE_NAME: ${RABBITMQ_QUEUE_NAME}
+#            RABBITMQ_VHOST: ${RABBITMQ_VHOST}
+        ports:
+            - 56722:${RABBITMQ_PORT}
+            - 15672:15672
