@@ -14,14 +14,15 @@ class PasswordMail extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
+    public $serial_number;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($name)
+    public function __construct($name, $serial_number)
     {
-        //
         $this->name = $name;
+        $this->serial_number = $serial_number;
     }
 
     /**

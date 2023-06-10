@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckpointRequest;
+use App\Jobs\SendEmailNotificationJob;
+use App\Jobs\SendEmailVerificationJob;
 use App\Models\Banknote;
 use App\Services\CheckpointService;
 
@@ -33,6 +35,13 @@ class BanknoteCheckpointController extends Controller
     public function store(CheckpointRequest $request, $id)
     {
             $this->checkpointService->store($request, $id);
+
+            $banknote = Banknote::find($id);
+
+            //retrieve the users that own this banknote
+            $customers = $banknote->users;
+
+            SendEmailNotificationJob::dispatch($customers, $banknote)->onQueue('default');
 
             // Redirect the user to the checkpoint page for the associated banknote
             $pathForRedirect = '/checkpoint/' . $id;

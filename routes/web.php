@@ -26,6 +26,14 @@ Route::post('/signup', [UserController::class, 'signup'])->name('signUp');
 Route::get('/signin', [UserController::class, 'showSignIn'])->name('showSignIn');
 Route::post('/signin', [UserController::class, 'authenticate'])->name('signIn');
 
+Route::get('/signin/github', [UserController::class, 'github']);
+Route::get('/signin/github/redirect', [UserController::class, 'githubRedirect']);
+
+Route::get('/signin/google', [UserController::class, 'google']);
+Route::get('/signin/google/callback', [UserController::class, 'googleRedirect']);
+
+
+
 Route::middleware(['auth','verified'])->group(function (){
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -39,7 +47,7 @@ Route::middleware(['auth','verified'])->group(function (){
     Route::get('/feedback', function () {return view('feedback');});
 
 });
-Route::get('/text', [UserController::class, 'sendText']);
+//Route::get('/text', [UserController::class, 'sendText']);
 
 Route::get('/email/verify', function () {return view('auth.verify_email');
 })->middleware('auth')->name('verification.notice');

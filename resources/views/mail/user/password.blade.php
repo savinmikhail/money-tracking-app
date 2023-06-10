@@ -1,3 +1,3 @@
 @component('mail::message')
-    your name is {{$name}}
+    {{$name}}, someone added new checkpoint for your banknote № {{$serial_number}}
 @endcomponent

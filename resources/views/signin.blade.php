@@ -16,6 +16,8 @@
         </label>
 
         <button type="submit">Sign In</button>
+        <a href="/signin/github">Sign in with GitHub</a><br>
+        <a href="/signin/google">Sign in with Google</a>
     </form>
 </div>
 

@@ -23,6 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'surname',
         'email',
         'password',
+        'google_id',
+        'email_verified_at',
     ];
     public function banknotes()
     {
