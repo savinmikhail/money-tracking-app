@@ -13,6 +13,8 @@ return [
     |
     */
 
+//    'default' => env('MAIL_MAILER', 'failover'),
+//    'default' => env('MAIL_MAILER', 'mailgun'),
     'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
@@ -34,6 +36,7 @@ return [
     */
 
     'mailers' => [
+
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
@@ -52,6 +55,9 @@ return [
 
         'mailgun' => [
             'transport' => 'mailgun',
+            'domain' => env('MAILGUN_DOMAIN'),
+            'secret' => env('MAILGUN_SECRET'),
+            'endpoint' => env('MAILGUN_ENDPOINT', 'api.eu.mailgun.net'),
             // 'client' => [
             //     'timeout' => 5,
             // ],
@@ -81,6 +87,7 @@ return [
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
+                'mailgun',
                 'smtp',
                 'log',
             ],
