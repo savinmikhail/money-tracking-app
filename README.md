@@ -12,7 +12,7 @@
 - Route generation: Draw routes connecting all the checkpoints.
 - Mailing: Mail notification about new checkpoint being added to user's banknote.
 </ul>
-
+<img src="https://github.com/savinmikhail/money-tracking-app/blob/master/ScreenshotReadme.png?raw=true" alt="Screenshot">
 <h2> Installation </h2>
 <ul>
     
