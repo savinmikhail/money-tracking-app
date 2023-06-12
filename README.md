@@ -11,7 +11,7 @@
 - Google Maps integration: Display checkpoints on a map with markers.
 - Route generation: Draw routes connecting all the checkpoints.
 </ul>
-
+<img src="https://github.com/savinmikhail/money-tracking-app/blob/master/ScreenshotReadme.png?raw=true" alt="Screenshot">
 <h2> Installation </h2>
 <ul>
     
@@ -21,7 +21,6 @@
 - Generate the application key: php artisan key:generate.<br>
 - Configure the database connection in the .env file.<br>
 </ul>
-<img src="https://github.com/savinmikhail/money-tracking-app/blob/master/ScreenshotReadme.png?raw=true" alt="Screenshot">
 
 <h2> Start steps</h2>
 
