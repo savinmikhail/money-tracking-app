@@ -2,15 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Mail\User\PasswordMail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
+
 
 class SendEmailVerificationJob implements ShouldQueue
 {
@@ -34,12 +32,7 @@ class SendEmailVerificationJob implements ShouldQueue
 
    public function handle(): void
     {
-
         event(new Registered($this->user));
-
-
     }
-
-
 
 }

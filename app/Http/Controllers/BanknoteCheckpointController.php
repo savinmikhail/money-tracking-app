@@ -6,6 +6,7 @@ use App\Http\Requests\CheckpointRequest;
 use App\Jobs\SendEmailNotificationJob;
 use App\Jobs\SendEmailVerificationJob;
 use App\Models\Banknote;
+use App\Services\CheckpointDataTransformer;
 use App\Services\CheckpointService;
 
 class BanknoteCheckpointController extends Controller
@@ -32,20 +33,17 @@ class BanknoteCheckpointController extends Controller
         return view('checkpoint', ['checkpoints' => $checkpoints, 'banknote_id' => $banknote_id, 'serial_number' => $serial_number]);
     }
 
-    public function store(CheckpointRequest $request, $id)
+    public function store(CheckpointRequest $request, $id, CheckpointDataTransformer $dataTransformer)
     {
-            $this->checkpointService->store($request, $id);
+        $data = $dataTransformer->transform($request);
 
-            $banknote = Banknote::find($id);
+        $this->checkpointService->store($data, $id);
 
-            //retrieve the users that own this banknote
-            $customers = $banknote->users;
+        SendEmailNotificationJob::dispatch($id)->onQueue('default');
 
-            SendEmailNotificationJob::dispatch($customers, $banknote)->onQueue('default');
-
-            // Redirect the user to the checkpoint page for the associated banknote
-            $pathForRedirect = '/checkpoint/' . $id;
-            return redirect($pathForRedirect);
+        // Redirect the user to the checkpoint page for the associated banknote
+        $pathForRedirect = '/checkpoint/' . $id;
+        return redirect($pathForRedirect);
     }
 
 }

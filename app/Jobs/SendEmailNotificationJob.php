@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use App\Mail\User\PasswordMail;
+use App\Models\Banknote;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -20,10 +20,12 @@ class SendEmailNotificationJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct($customers, $banknote)
+    public function __construct($id)
     {
-        $this->customers = $customers;
-        $this->banknote = $banknote;
+        $this->banknote = Banknote::find($id);
+
+        //retrieve the users that own this banknote
+        $this->customers = $this->banknote->users;
     }
 
     /**
@@ -31,21 +33,8 @@ class SendEmailNotificationJob implements ShouldQueue
      */
     public function handle(): void
     {
-//        try {
             foreach ($this->customers as $customer) {
                 Mail::to($customer->email)->send(new PasswordMail($customer->name, $this->banknote->serial_number));
             }
-//        }
-//        catch (\Exception $e) {
-
-
-            //            $errorMessage = $e->getMessage();
-            // Handle the exception or display an error message
-//            return back()->withError('An error occurred. Please try again.');
-//            return back()->withError($errorMessage);
-//        }
-//        foreach ($this->customers as $this->customer){
-//            Mail::to($this->customer->email)->send(new PasswordMail($this->customer->name));
-//        }
     }
 }

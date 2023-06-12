@@ -28,18 +28,22 @@
 
 ```make build```
 
-2. Run them:
+2. Create vendor
+
+```docker compose composer istall```
+
+3. Run them:
 
 ```make up```
 
-3. Check them:
+4. Check them:
 
 ```make ps```
 
-4. Create tables in the database:
+5. Create tables in the database:
 
 ```make migrate``` 
-5. After registration run: docker compose exec php-fpm php artisan queue:work
+6. After registration run: docker compose exec php-fpm php artisan queue:work
 
 
 <h2>Usage </h2>

@@ -9,29 +9,25 @@ use Illuminate\Support\Facades\DB;
 class BanknoteService
 {
 
-    public function store($request)
+    public function store($data)
     {
+
+        $user = Auth::user();
 
         // Start a database transaction
         DB::beginTransaction();
-
-        // Check if a banknote with the provided serial number already exists
-        $banknote = Banknote::where('serial_number', $request->serial_number)->first();
-        $user = Auth::user();
-
         try {
+            $banknote = Banknote::firstOrCreate(
+                [
+                    'serial_number' => $data['serial_number'],
+                ],
+                [
+                    'price' => $data['price'],
+                ]
+            );
 
-            if ($banknote) {
-                // Banknote already exists, attach the user to it
-                $banknote->users()->attach($user);
-            } else {
-                // Create a new banknote with the provided data
-                $banknote = Banknote::create([
-                    'serial_number' => $request->serial_number,
-                    'price' => $request->price,
-                ]);
-                $banknote->users()->attach($user);
-            }
+            $banknote->users()->attach($user);
+
             // Commit the transaction
             DB::commit();
 
@@ -39,11 +35,7 @@ class BanknoteService
 
             // An exception occurred, rollback the transaction
             DB::rollback();
-
-            //            $errorMessage = $e->getMessage();
-            // Handle the exception or display an error message
             return back()->withError('An error occurred. Please try again.');
-            //return back()->withError($errorMessage);
         }
     }
 }
