@@ -10,13 +10,13 @@
 - Checkpoint creation: Add checkpoints with location, date, comment, and photo.
 - Google Maps integration: Display checkpoints on a map with markers.
 - Route generation: Draw routes connecting all the checkpoints.
+- Mailing: Mail notification about new checkpoint being added to user's banknote.
 </ul>
 
 <h2> Installation </h2>
 <ul>
     
-- Clone the repository: git clone https://github.com/your-username/your-repo.git.<br>
-- Install dependencies: composer install.<br>
+- Clone the repository: git clone https://github.com/savinmikhail/money_tracking-app.git.<br>
 - Copy the .env.example file to .env.<br>
 - Generate the application key: php artisan key:generate.<br>
 - Configure the database connection in the .env file.<br>
@@ -43,7 +43,10 @@
 5. Create tables in the database:
 
 ```make migrate``` 
-6. After registration run: docker compose exec php-fpm php artisan queue:work
+
+6. After registration run:
+
+```docker compose exec php-fpm php artisan queue:work```
 
 
 <h2>Usage </h2>
