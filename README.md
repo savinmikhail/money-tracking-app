@@ -21,6 +21,7 @@
 - Generate the application key: php artisan key:generate.<br>
 - Configure the database connection in the .env file.<br>
 </ul>
+![alt text](https://github.com/savinmikhail/money-tracking-app/blob/master/ScreenshotReadme.png?raw=true)
 
 <h2> Start steps</h2>
 
