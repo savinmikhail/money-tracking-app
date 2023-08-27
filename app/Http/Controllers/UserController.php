@@ -33,7 +33,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        SendEmailVerificationJob::dispatch($user)->onQueue('default');
+//        SendEmailVerificationJob::dispatch($user)->onQueue('default');
 //        $user->sendEmailVerificationNotification();
 
         // Log in the newly created user

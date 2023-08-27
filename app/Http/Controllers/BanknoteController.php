@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBanknoteRequest;
 use App\Services\BanknoteService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Services\BanknoteDataTransformer;
 use App\Models\User;
@@ -11,11 +12,8 @@ use App\Models\User;
 
 class BanknoteController extends Controller
 {
-    protected $banknoteService;
-
-    public function __construct(BanknoteService $banknoteService)
+    public function __construct(protected BanknoteService $banknoteService)
     {
-        $this->banknoteService = $banknoteService;
     }
 
     public function list()
@@ -31,13 +29,9 @@ class BanknoteController extends Controller
         return view('home', ['banknotes' => $banknotes]);
     }
 
-    public function store(StoreBanknoteRequest $request, BanknoteDataTransformer $dataTransformer)
+    public function store(StoreBanknoteRequest $request)
     {
-        $data = $dataTransformer->transform($request);
-
-        $this->banknoteService->store($data);
-
-        // Redirect the user to the home page
+        $response = $this->banknoteService->store($request->validated());
         return redirect(route('home'));
     }
 }

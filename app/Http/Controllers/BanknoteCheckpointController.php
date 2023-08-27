@@ -11,11 +11,9 @@ use App\Services\CheckpointService;
 
 class BanknoteCheckpointController extends Controller
 {
-    protected $checkpointService;
 
-    public function __construct(CheckpointService $checkpointService)
+    public function __construct(protected CheckpointService $checkpointService)
     {
-        $this->checkpointService = $checkpointService;
     }
 
     public function index($banknote_id)
@@ -37,9 +35,9 @@ class BanknoteCheckpointController extends Controller
     {
         $data = $dataTransformer->transform($request);
 
-        $this->checkpointService->store($data, $id);
+        $response = $this->checkpointService->store($data, $id);
 
-        SendEmailNotificationJob::dispatch($id)->onQueue('default');
+//        SendEmailNotificationJob::dispatch($id)->onQueue('default');
 
         // Redirect the user to the checkpoint page for the associated banknote
         $pathForRedirect = '/checkpoint/' . $id;

@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('banknote/list/{id}', [\App\Http\Controllers\Api\BanknoteController::class, 'list']);
+Route::post('banknote/store/{id}', [\App\Http\Controllers\Api\BanknoteController::class, 'store']);
+
+Route::post('/checkpoint/store/{id}', [\App\Http\Controllers\Api\BanknoteCheckpointController::class, 'store']);
+Route::get('/checkpoint/list/{id}', [\App\Http\Controllers\Api\BanknoteCheckpointController::class, 'index']);
+
+Route::post('signup', [\App\Http\Controllers\Api\UserController::class, 'signup']);
+Route::post('signin', [\App\Http\Controllers\Api\UserController::class, 'signin']);
+Route::post('logout', [\App\Http\Controllers\Api\UserController::class, 'logout']);
+Route::post('refresh', [\App\Http\Controllers\Api\UserController::class, 'refresh']);
+Route::get('me', [\App\Http\Controllers\Api\UserController::class, 'me']);
