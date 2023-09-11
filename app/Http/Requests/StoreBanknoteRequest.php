@@ -24,6 +24,7 @@ class StoreBanknoteRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'userId' => ['sometimes', 'integer'],
             'serial_number' => ['required', 'string'],
             'price' => ['required', 'min:3'],
         ];

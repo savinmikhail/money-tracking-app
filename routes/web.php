@@ -34,7 +34,7 @@ Route::get('/signin/google/callback', [UserController::class, 'googleRedirect'])
 
 
 
-// Route::middleware(['auth','verified'])->group(function (){
+ Route::middleware(['auth',])->group(function (){
 
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -46,8 +46,8 @@ Route::get('/signin/google/callback', [UserController::class, 'googleRedirect'])
 
     Route::get('/feedback', function () {return view('feedback');});
 
-// });
-//Route::get('/text', [UserController::class, 'sendText']);
+ });
+Route::get('/text', [UserController::class, 'sendText']);
 
 Route::get('/email/verify', function () {return view('auth.verify_email');
 })->middleware('auth')->name('verification.notice');

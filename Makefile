@@ -19,6 +19,10 @@ ps:
 bash:
 	docker compose exec php-fpm bash
 
+.PHONY: db
+bash:
+	docker compose exec db bash
+
 .PHONY: restart
 restart:
 	docker compose down && docker compose build && docker compose up -d
