@@ -23,8 +23,10 @@ Route::post('banknote/store/{id}', [\App\Http\Controllers\Api\BanknoteController
 Route::post('/checkpoint/store/{id}', [\App\Http\Controllers\Api\BanknoteCheckpointController::class, 'store']);
 Route::get('/checkpoint/list/{id}', [\App\Http\Controllers\Api\BanknoteCheckpointController::class, 'index']);
 
-Route::post('signup', [\App\Http\Controllers\Api\UserController::class, 'signup']);
-Route::post('signin', [\App\Http\Controllers\Api\UserController::class, 'signin']);
-Route::post('logout', [\App\Http\Controllers\Api\UserController::class, 'logout']);
-Route::post('refresh', [\App\Http\Controllers\Api\UserController::class, 'refresh']);
-Route::get('me', [\App\Http\Controllers\Api\UserController::class, 'me']);
+Route::group(['middleware' => 'api',], function ($router) {
+    Route::post('signup', [\App\Http\Controllers\Api\UserController::class, 'signUp']);
+    Route::post('signin', [\App\Http\Controllers\Api\UserController::class, 'signIn']);
+    Route::post('logout', [\App\Http\Controllers\Api\UserController::class, 'logout']);
+    Route::post('refresh', [\App\Http\Controllers\Api\UserController::class, 'refresh']);
+    Route::get('me', [\App\Http\Controllers\Api\UserController::class, 'me']);
+});
